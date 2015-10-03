@@ -4,31 +4,22 @@ import java.util.List;
 
 public class Report {
 
-	private List<Expense> expenses;
+	private final String statement;
 
 	public Report(List<Expense> expenses) {
-		this.expenses = expenses;
-	}
-
-	public String generate() {
-		return createStatement().toString();
-	}
-	
-	private StringBuilder createStatement(){
 		StringBuilder result = new StringBuilder();
-		for(Expense expense: expenses){
-			if(expense.hasExceededLimit()) result.append(expense).append(",");
-		}
-		result.append(totalExpenses());
-		return result;
-	}
-
-	private Expense totalExpenses(){
 		Expense total = new Expense("Total", 0, Integer.MAX_VALUE);
 		for(Expense expense: expenses){
-			if(expense.hasExceededLimit()) total = total.add(expense);
+			if(expense.hasExceededLimit()) {
+				result.append(expense).append("\n");
+				total = total.add(expense);
+			}
 		}
-		return total;
+		this.statement = result.append(total).toString();
+	}
+
+	public String toString() {
+		return statement;
 	}
 
 }

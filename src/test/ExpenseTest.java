@@ -20,7 +20,8 @@ public class ExpenseTest {
 	public void shouldBeAbleToAddExpenseByType(){
 		Expense dinner = new Expense("Dinner", 1000, 0);
 		Report report = new Report(Arrays.asList(dinner));
-		assertEquals("Dinner: 1000,Total: 1000", report.generate());
+		assertEquals("Dinner: 1000\n" +
+				     "Total: 1000", report.toString());
 	}
 
 	@Test
@@ -28,7 +29,9 @@ public class ExpenseTest {
 		Expense dinner = new Expense("Dinner", 1000, 0);
 		Expense car = new Expense("Car", 2000, 0);
 		Report report = new Report(Arrays.asList(dinner, car));
-		assertEquals("Dinner: 1000,Car: 2000,Total: 3000", report.generate());
+		assertEquals("Dinner: 1000\n" +
+				     "Car: 2000\n" +
+				     "Total: 3000", report.toString());
 	}
 	
 	@Test
@@ -36,8 +39,9 @@ public class ExpenseTest {
 		Expense dinner = new Expense("Dinner", 1000, 0);
 		Expense car = new Expense("Car", 2000, 0);
 		Report report = new Report(Arrays.asList(dinner, car));
-		assertEquals("Dinner: 1000,Car: 2000" +
-				     ",Total: 3000", report.generate());
+		assertEquals("Dinner: 1000\n" +
+				     "Car: 2000\n" +
+				     "Total: 3000", report.toString());
 	}
 	
 	@Test
@@ -46,8 +50,9 @@ public class ExpenseTest {
 		Expense car = new Expense("Car", 2000, 1000);
 		Expense Laundry = new Expense("Laundry", 500, 1000);
 		Report report = new Report(Arrays.asList(dinner, car, Laundry));
-		assertEquals("Dinner: 1500,Car: 2000" +
-					 ",Total: 3500", report.generate());
+		assertEquals("Dinner: 1500\n" +
+				     "Car: 2000\n" +
+				     "Total: 3500", report.toString());
 	}
 
 }
