@@ -18,7 +18,7 @@ public class Report {
 		StringBuilder result = new StringBuilder();
 		for(Expense expense: expenses){
 			if(expense.hasExceededLimit()){
-				result.append(expense.toString());
+				result.append(expense);
 				result.append(",");
 			}
 		}
@@ -29,8 +29,7 @@ public class Report {
 	private Expense totalExpenses(){
 		Expense total = new Expense("Total", 0, Integer.MAX_VALUE);
 		for(Expense expense: expenses){
-			if(expense.hasExceededLimit())
-				total = total.add(expense);
+			if(expense.hasExceededLimit()) total = total.add(expense);
 		}
 		return total;
 	}

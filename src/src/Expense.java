@@ -22,7 +22,7 @@ public class Expense {
 	}
 
 	public Expense add(Expense thatExpense) {
-		this.amount = this.amount + thatExpense.amount;
-		return this;
+		int newAmount = this.amount + thatExpense.amount;
+		return new Expense(this.type, newAmount, this.limit);
 	}
 }
