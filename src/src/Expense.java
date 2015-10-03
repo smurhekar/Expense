@@ -2,9 +2,9 @@ package src;
 
 public class Expense {
 
-	private String type;
-	private int amount;
-	private int limit;
+	private final String type;
+	private final int amount;
+	private final int limit;
 
 	public Expense(String type, int amount, int limit) {
 		this.type = type;
