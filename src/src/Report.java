@@ -19,8 +19,10 @@ public class Report {
 	private StringBuilder createStatement(){
 		StringBuilder result = new StringBuilder();
 		for(Expense expense: expenses){
-			result.append(expense.toString());
-			result.append(",");
+			if(expense.getAmount() > expense.limit()){
+				result.append(expense.toString());
+				result.append(",");
+			}
 		}
 		removeLastCharacterFrom(result);
 		return result;
@@ -33,7 +35,8 @@ public class Report {
 	private int totalExpenses(){
 		int total = 0;
 		for(Expense expense: expenses){
-			total = total + expense.getAmount();
+			if(expense.getAmount() > expense.limit())
+				total = total + expense.getAmount();
 		}
 		return total;
 	}
