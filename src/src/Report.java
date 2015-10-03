@@ -17,10 +17,7 @@ public class Report {
 	private StringBuilder createStatement(){
 		StringBuilder result = new StringBuilder();
 		for(Expense expense: expenses){
-			if(expense.hasExceededLimit()){
-				result.append(expense);
-				result.append(",");
-			}
+			if(expense.hasExceededLimit()) result.append(expense).append(",");
 		}
 		result.append(totalExpenses());
 		return result;
