@@ -11,32 +11,26 @@ public class Report {
 	}
 
 	public String generate() {
-		StringBuilder statement = createStatement();
-		statement.append("\nTotal = "+totalExpenses());
-		return statement.toString();
+		return createStatement().toString();
 	}
 	
 	private StringBuilder createStatement(){
 		StringBuilder result = new StringBuilder();
 		for(Expense expense: expenses){
-			if(expense.getAmount() > expense.limit()){
+			if(expense.hasExceededLimit()){
 				result.append(expense.toString());
 				result.append(",");
 			}
 		}
-		removeLastCharacterFrom(result);
+		result.append(totalExpenses());
 		return result;
 	}
 
-	private void removeLastCharacterFrom(StringBuilder result) {
-		result.deleteCharAt(result.length() - 1);
-	}
-	
-	private int totalExpenses(){
-		int total = 0;
+	private Expense totalExpenses(){
+		Expense total = new Expense("Total", 0, Integer.MAX_VALUE);
 		for(Expense expense: expenses){
-			if(expense.getAmount() > expense.limit())
-				total = total + expense.getAmount();
+			if(expense.hasExceededLimit())
+				total = total.add(expense);
 		}
 		return total;
 	}

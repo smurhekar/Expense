@@ -17,12 +17,12 @@ public class Expense {
 		return type + ": " + amount;
 	}
 
-	public int getAmount() {
-		return amount;
+	public boolean hasExceededLimit(){
+		return amount > limit;
 	}
 
-	public int limit() {
-		return limit;
+	public Expense add(Expense thatExpense) {
+		this.amount = this.amount + thatExpense.amount;
+		return this;
 	}
-
 }
