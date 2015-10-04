@@ -11,11 +11,12 @@ public class Report {
 		Expense total = new Expense("Total", 0, Integer.MAX_VALUE);
 		for(Expense expense: expenses){
 			if(expense.hasExceededLimit()) {
-				result.append(expense).append("\n");
+				result.append(expense).append(",");
 				total = total.add(expense);
 			}
 		}
-		this.statement = result.append(total).toString();
+		result.setLength(result.length() - 1);
+		this.statement = result.append("\n").append(total).toString();
 	}
 
 	public String toString() {
