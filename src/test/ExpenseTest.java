@@ -4,8 +4,7 @@ import org.junit.Test;
 import src.Expense;
 import src.Report;
 
-import java.util.Arrays;
-
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
 public class ExpenseTest {
@@ -19,7 +18,7 @@ public class ExpenseTest {
 	@Test
 	public void shouldBeAbleToAddExpenseByType(){
 		Expense dinner = new Expense("Dinner", 1000, 0);
-		Report report = new Report(Arrays.asList(dinner));
+		Report report = new Report(asList(dinner));
 		assertEquals("Dinner: 1000\n" +
 				     "Total: 1000", report.toString());
 	}
@@ -28,9 +27,8 @@ public class ExpenseTest {
 	public void shouldBeAbleToAddMultipleExpensesByType(){
 		Expense dinner = new Expense("Dinner", 1000, 0);
 		Expense car = new Expense("Car", 2000, 0);
-		Report report = new Report(Arrays.asList(dinner, car));
-		assertEquals("Dinner: 1000," +
-				     "Car: 2000\n" +
+		Report report = new Report(asList(dinner, car));
+		assertEquals("Dinner: 1000,Car: 2000\n" +
 				     "Total: 3000", report.toString());
 	}
 	
@@ -38,9 +36,8 @@ public class ExpenseTest {
 	public void shouldBeAbleToTotalAddedExpenses(){
 		Expense dinner = new Expense("Dinner", 1000, 0);
 		Expense car = new Expense("Car", 2000, 0);
-		Report report = new Report(Arrays.asList(dinner, car));
-		assertEquals("Dinner: 1000," +
-				     "Car: 2000\n" +
+		Report report = new Report(asList(dinner, car));
+		assertEquals("Dinner: 1000,Car: 2000\n" +
 				     "Total: 3000", report.toString());
 	}
 	
@@ -49,9 +46,8 @@ public class ExpenseTest {
 		Expense dinner = new Expense("Dinner", 1500, 1000);
 		Expense car = new Expense("Car", 2000, 1000);
 		Expense Laundry = new Expense("Laundry", 500, 1000);
-		Report report = new Report(Arrays.asList(dinner, car, Laundry));
-		assertEquals("Dinner: 1500," +
-				     "Car: 2000\n" +
+		Report report = new Report(asList(dinner, car, Laundry));
+		assertEquals("Dinner: 1500,Car: 2000\n" +
 				     "Total: 3500", report.toString());
 	}
 

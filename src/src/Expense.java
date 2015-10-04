@@ -2,19 +2,19 @@ package src;
 
 public class Expense {
 
-	private final String type;
+	private final String title;
 	private final int amount;
 	private final int limit;
 
-	public Expense(String type, int amount, int limit) {
-		this.type = type;
+	public Expense(String title, int amount, int limit) {
+		this.title = title;
 		this.amount = amount;
 		this.limit = limit;
 	}
 	
 	@Override
 	public String toString(){
-		return type + ": " + amount;
+		return title + ": " + amount;
 	}
 
 	public boolean hasExceededLimit(){
@@ -23,6 +23,6 @@ public class Expense {
 
 	public Expense add(Expense thatExpense) {
 		int newAmount = this.amount + thatExpense.amount;
-		return new Expense(this.type, newAmount, this.limit);
+		return new Expense(this.title, newAmount, this.limit);
 	}
 }
