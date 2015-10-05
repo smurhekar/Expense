@@ -1,5 +1,6 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Report {
@@ -7,21 +8,38 @@ public class Report {
 	private final String statement;
 
 	public Report(List<Expense> expenses) {
-		this.statement = getStatementFor(expenses);
+		List<Expense> expensesAboveLimits = getExpensesAboveLimits(expenses);
+		Expense total = totalExpenses(expensesAboveLimits);
+		this.statement = statementFor(expensesAboveLimits, total);
+		
 	}
-
-	private String getStatementFor(List<Expense> expenses) {
+	
+	private String statementFor(List<Expense> expensesAboveLimits, Expense total) {
 		StringBuilder result = new StringBuilder();
-		Expense total = new Expense("Total", 0, Integer.MAX_VALUE);
-		for(Expense expense: expenses){
-			if(expense.hasExceededLimit()) {
-				result.append(expense).append(",");
-				total = total.add(expense);
-			}
+		for (Expense expense : expensesAboveLimits) {
+			result.append(expense).append(",");
 		}
 		removeLastCharacterFrom(result);
 		result.append("\n").append(total);
 		return result.toString();
+	}
+
+	private Expense totalExpenses(List<Expense> expenses){
+		Expense total = new Expense("Total", 0, Integer.MAX_VALUE);
+		for (Expense expense : expenses) {
+			total = total.add(expense);
+		}
+		return total;
+	}
+	
+	private List<Expense> getExpensesAboveLimits(List<Expense> expenses){
+		List<Expense> expensesAboveLimits = new ArrayList<Expense>();
+		for (Expense expense : expenses) {
+			if(expense.hasExceededLimit()){
+				expensesAboveLimits.add(expense);
+			}
+		}
+		return expensesAboveLimits;
 	}
 
 	private void removeLastCharacterFrom(StringBuilder result) {
