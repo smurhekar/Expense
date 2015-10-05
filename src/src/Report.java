@@ -19,9 +19,13 @@ public class Report {
 				total = total.add(expense);
 			}
 		}
-		result.setLength(result.length() - 1);
+		removeLastCharacterFrom(result);
 		result.append("\n").append(total);
 		return result.toString();
+	}
+
+	private void removeLastCharacterFrom(StringBuilder result) {
+		result.setLength(result.length() - 1);
 	}
 
 	public String toString() {
